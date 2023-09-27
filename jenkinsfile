@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    tools{
+        nodejs "node"
+    }
+
+    stages {
+        stage('Git checkout') {
+            steps {
+               git branch: 'main', changelog: false, poll: false, url: 'https://github.com/gops971708/server'
+            }
+        }
+        
+        stage('install') {
+            steps {
+              sh "npm install"
+            }
+        }
+        stage('start ') {
+            steps {
+              sh "pm2 start server.js"
+            }
+        }
+    }
+}
