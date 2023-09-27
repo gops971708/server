@@ -22,7 +22,7 @@ pipeline {
             steps {
               echo 'starting server file'
               sh 'export build_id=dontkillmeplease'
-              sh "pm2 restart server.js"
+              sh "pm2 start server.js"
             }
         }
     }
