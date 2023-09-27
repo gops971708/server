@@ -7,17 +7,20 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
+               echo 'Git Checkout' 
                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/gops971708/server'
             }
         }
         
         stage('install') {
             steps {
+              echo 'install npm'
               sh "npm install"
             }
         }
         stage('start ') {
             steps {
+              echo 'starting server file'
               sh "pm2 start server.js"
             }
         }
