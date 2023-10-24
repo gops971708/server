@@ -12,7 +12,7 @@ pipeline {
             }
         }
         
-        stage('install') {
+       /* stage('install') {
             steps {
               echo 'install npm'
               sh "npm install"
@@ -22,6 +22,16 @@ pipeline {
             steps {
               echo 'starting server file'
               sh "pm2 start server.js"
+            }
+        }
+        */
+
+        stage('Build and Push'){
+            steps{
+                withDockerRegistry(credentialsId: 'b08c79a6-4d05-4a06-a95d-c2b9c6dd503b') {
+                    sh "docker build -t gops84490/server:1.0 ."
+                    sh "docker push gops84490/server:1.0"
+                }
             }
         }
     }
