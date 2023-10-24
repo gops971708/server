@@ -31,8 +31,9 @@ pipeline {
                 script{
                     
                     withDockerRegistry(credentialsId: 'b08c79a6-4d05-4a06-a95d-c2b9c6dd503b') {
-                        sh "docker build -t gops84490/server:1.0 ."
-                        sh "docker push gops84490/server:1.0"
+                        sh "docker build -t gops84490/server:2.0 ."
+                        sh "docker push gops84490/server:2.0"
+                        sh "docker run -p 4000:4000 -d --name=\"server-backend\"  gops84490/server:2.0"
                     }
                 }
             }
